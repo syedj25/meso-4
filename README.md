@@ -4,6 +4,28 @@ Source Code: https://github.com/kiteco/python-youtube-code/tree/master/Deepfake-
 
 Source Code YouTube video: https://www.youtube.com/watch?v=kYeLBZMTLjk
 
+## Abstract
+Deepfake technology poses significant challenges
+for digital forensics, as it enables the creation of highly realistic
+fake media that can confuse investigations and compromise the
+reliability of evidence. This study examines the application of
+Artificial Intelligence (AI) and Machine Learning (ML) methods
+to detect deepfake images in forensic settings. We used the Meso-4
+Convolutional Neural Network (CNN), which is a compact design
+designed for identifying face alterations, and tested it on a set of
+real and edited images gathered from real videos and Deepfake
+videos. The process included preparing the data, training the
+model, and checking how well it performs to measure accuracy
+and how well it holds up. The results show that the Meso-4 model
+works well in telling the difference between real and fake images,
+showing its value as a useful tool for forensic experts. These
+results emphasize the need to include AI-based tools in forensic
+processes to better confirm evidence and reduce the risks from
+fake media. Future research will aim to improve the model’s
+ability to detect high-quality images and make it more resistant
+to attempts to fool it.
+
+
 ## 🛠️ Tools for Installation
 Make sure you have the following installed before running the project: 
 

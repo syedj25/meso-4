@@ -1,9 +1,5 @@
 # Syed Javed CYFI 445 Forensic Data Analysis - Final Project (meso-4)
 
-Source Code: https://github.com/kiteco/python-youtube-code/tree/master/Deepfake-detection
-
-Source Code YouTube video: https://www.youtube.com/watch?v=kYeLBZMTLjk
-
 ## Abstract
 Deepfake technology poses significant challenges
 for digital forensics, as it enables the creation of highly realistic
@@ -82,3 +78,9 @@ This project has been updated to align with newer versions of Keras/TensorFlow:
 
   # New
   y = LeakyReLU(negative_slope=0.1)(y)
+
+ ## Original Source Code
+
+- Original Source Code: https://github.com/kiteco/python-youtube-code/tree/master/Deepfake-detection
+
+- Original Source Code YouTube video: https://www.youtube.com/watch?v=kYeLBZMTLjk

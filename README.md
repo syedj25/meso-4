@@ -25,6 +25,8 @@ fake media. Future research will aim to improve the model’s
 ability to detect high-quality images and make it more resistant
 to attempts to fool it.
 
+## Research Paper
+https://www.overleaf.com/project/690944943d8a4279ff0ecf73
 
 ## 🛠️ Tools for Installation
 Make sure you have the following installed before running the project: 

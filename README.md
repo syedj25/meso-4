@@ -1,5 +1,9 @@
 # Syed Javed CYFI 445 Forensic Data Analysis - Final Project (meso-4)
 
+## Original Source Code
+- Original Source Code: https://github.com/kiteco/python-youtube-code/tree/master/Deepfake-detection
+- Original Source Code YouTube video: https://www.youtube.com/watch?v=kYeLBZMTLjk
+
 ## Abstract
 Deepfake technology poses significant challenges
 for digital forensics, as it enables the creation of highly realistic
@@ -79,8 +83,76 @@ This project has been updated to align with newer versions of Keras/TensorFlow:
   # New
   y = LeakyReLU(negative_slope=0.1)(y)
 
- ## Original Source Code
+## 📌 Modified and Added
 
-- Original Source Code: https://github.com/kiteco/python-youtube-code/tree/master/Deepfake-detection
+This block evaluates the Meso4 model by predicting labels for each image, categorizing correct and incorrect classifications, calculating overall accuracy, and visualizing how accuracy progresses as more predictions are made.
 
-- Original Source Code YouTube video: https://www.youtube.com/watch?v=kYeLBZMTLjk
+```python
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+ 
+# Lists for classification results
+correct_real, correct_real_pred = [], []
+correct_deepfake, correct_deepfake_pred = [], []
+misclassified_real, misclassified_real_pred = [], []
+misclassified_deepfake, misclassified_deepfake_pred = [], []
+
+# Lists for metrics
+true_labels, predicted_labels = [], []
+
+# Iterate once through the generator
+for i in range(len(generator.labels)):
+    # Load next picture and predict
+    X, y = next(generator)
+    pred = meso.predict(X)[0][0]
+    rounded_pred = int(round(pred))
+
+    # Store true and predicted labels
+    true_labels.append(int(y[0]))
+    predicted_labels.append(rounded_pred)
+
+    # Sort into categories
+    if rounded_pred == y[0] and y[0] == 1:
+        correct_real.append(X)
+        correct_real_pred.append(pred)
+    elif rounded_pred == y[0] and y[0] == 0:
+        correct_deepfake.append(X)
+        correct_deepfake_pred.append(pred)
+    elif y[0] == 1:
+        misclassified_real.append(X)
+        misclassified_real_pred.append(pred)
+    else:
+        misclassified_deepfake.append(X)
+        misclassified_deepfake_pred.append(pred)
+
+    # Status update
+    if i % 1000 == 0:
+        print(i, ' predictions completed.')
+    if i == len(generator.labels) - 1:
+        print("All", len(generator.labels), "predictions completed")
+
+# Calculate overall accuracy
+accuracy = accuracy_score(true_labels, predicted_labels)
+print(f"\n--- Accuracy Metrics ---")
+print(f"Accuracy: {accuracy:.2f}")
+
+# Accuracy progression graph
+accuracies = []
+current_true, current_pred = [], []
+
+for i in range(len(true_labels)):
+    current_true.append(true_labels[i])
+    current_pred.append(predicted_labels[i])
+    acc = accuracy_score(current_true, current_pred)
+    accuracies.append(acc)
+
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(accuracies)+1), accuracies, marker='o', linestyle='-', color='darkorange')
+plt.title('Meso4 Model Accuracy Progression')
+plt.xlabel('Number of Predictions')
+plt.ylabel('Accuracy')
+plt.ylim(0, 1)
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('accuracy_progression_graph.png')
+plt.show()
